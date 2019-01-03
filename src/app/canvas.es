@@ -1,11 +1,11 @@
-import Dot from 'dot.es';
-import Mouse from 'mouse.es';
+import Dot from './dot.es';
+import Mouse from './mouse.es';
 
 const mouseR = 100;
 
 export default class Canvas {
     render = () => {
-        window.requestAnimationFrame(this.render);
+        this.requestId = window.requestAnimationFrame(this.render);
         this.ctx.clearRect(0, 0, this.rect.width, this.rect.height);
         this.ctx.fillStyle = '#000000';
         this.ctx.fillRect(0, 0, this.rect.width, this.rect.height);
@@ -28,15 +28,14 @@ export default class Canvas {
         dot.render(this.ctx);
     };
 
-    lineDraw = (dot) => {
+    lineDraw = (dot, key) => {
+        // console.log(key);
         if (this.dot1) {
-            dot.proccess([
-                {
-                    r: mouseR,
-                    x: this.mouse.x,
-                    y: this.mouse.y,
-                },
-            ]);
+            dot.proccess({
+                r: mouseR,
+                x: this.mouse.x,
+                y: this.mouse.y,
+            }, key);
             const cx1 = (this.dot1.x + dot.x) * 0.5;
             const cy1 = (this.dot1.y + dot.y) * 0.5;
             this.ctx.quadraticCurveTo(this.dot1.x, this.dot1.y, cx1, cy1);
@@ -118,7 +117,6 @@ export default class Canvas {
     };
 
     destroy() {
-        this.render = () => {
-        };
+        window.cancelAnimationFrame(this.requestId);
     }
 }

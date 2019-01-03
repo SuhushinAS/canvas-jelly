@@ -1,32 +1,17 @@
-import Canvas from 'canvas.es';
-import 'style.less';
+import App from 'app/index.es';
+// import 'style/index.less';
 
-class Jelly {
-    constructor() {
-        this.init();
-        this.bind();
+const root = document.body;
+
+if (root) {
+    let app = new App(root);
+
+    if (module.hot) {
+        module.hot.accept('app/index.es', () => {
+            const HotApp = require('app/index.es').default;
+            app.destroy();
+
+            app = new HotApp(root);
+        });
     }
-
-    init() {
-        this.canvasEl = document.querySelector('.canvas');
-        this.svgEl = document.querySelector('.svg');
-        this.canvas = new Canvas(this.canvasEl, this.svgEl);
-    }
-
-    bind() {
-        window.removeEventListener('resize', this.handleResize);
-        window.addEventListener('resize', this.handleResize);
-        window.dispatchEvent(new Event('resize'));
-    }
-
-    handleResize = (e) => {
-        const height = e.target.innerHeight;
-        const width = e.target.innerWidth;
-        const size = Math.min(height, width);
-        this.canvas.setSize(size, size);
-    };
 }
-
-(function() {
-    new Jelly();
-})();

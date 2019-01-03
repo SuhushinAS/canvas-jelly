@@ -32,7 +32,7 @@ module.exports = {
     },
     devtool: isProd ? false : 'eval',
     entry: {
-        index: 'index.es',
+        index: 'index',
     },
     module: {
         rules: getRuleList(),
@@ -76,11 +76,10 @@ module.exports = {
         },
     },
     output: {
-        chunkFilename: '[name].min.js',
         filename: '[name].min.js',
         library: ['mag', 'MAGDelivery', '[name]'],
         path: pathList.dist,
-        publicPath: './build/',
+        publicPath: '/build/',
     },
     plugins: getPluginList(),
     resolve: {
@@ -118,8 +117,7 @@ function getRuleListBase() {
         {
             test: /\.html$/,
             use: {
-                loader: 'file-loader',
-                options: {name: '[name].[hash:5].[ext]'},
+                loader: 'html-loader',
             },
         },
         {
@@ -153,6 +151,7 @@ function getRuleListStyle() {
                 isProd ? MiniCssExtractPlugin.loader : 'style-loader',
                 'css-loader',
                 'postcss-loader',
+                'less-loader',
                 {
                     loader: 'less-loader',
                     options: {
@@ -171,14 +170,14 @@ function getRuleListStyle() {
 function getRuleListResource() {
     return [
         {
-            test: /\.(ttf|eot|svg|woff|woff2)(\?[a-z0-9]+)?$/,
+            test: /\.(ttf|eot|woff|woff2)(\?[a-z0-9]+)?$/,
             use: {
                 loader: 'file-loader',
                 options: {name: 'fonts/[name].[hash:5].[ext]'},
             },
         },
         {
-            test: /.*\.(png|jpg|jpeg|gif)$/i,
+            test: /.*\.(png|jpg|jpeg|gif|svg)$/i,
             use: {
                 loader: 'file-loader',
                 options: {name: 'img/[name].[hash:5].[ext]'},
@@ -243,6 +242,9 @@ function getPluginListProd() {
         new webpack.LoaderOptionsPlugin({
             debug: false,
             minimize: true,
+            options: {
+                customInterpolateName: (url) => url.toLowerCase(),
+            },
         }),
         new webpack.NoEmitOnErrorsPlugin(),
     ];

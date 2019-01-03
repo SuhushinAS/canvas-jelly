@@ -15,13 +15,14 @@ export default class Dot {
         this.tension = tension;
     }
 
-    proccess(objectList) {
-        objectList.forEach(this.react);
+    proccess(object, key) {
+        this.time = +new Date();
+        this.react(object, key);
         this.prepare();
         this.pos();
     }
 
-    react = (object) => {
+    react(object, key = 1) {
         const dx = this.x - object.x;
         const dy = this.y - object.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -32,11 +33,11 @@ export default class Dot {
 
             this.vx += object.x + Math.cos(angle) * max - this.x;
             this.vy += object.y + Math.sin(angle) * max - this.y;
-        } else {
-            this.vx += (Math.random() - 0.5) * 3;
-            this.vy += (Math.random() - 0.5) * 3;
         }
-    };
+        const koef = Math.round(this.time / 600 + key / 6);
+        this.vx += Math.cos(koef);
+        this.vy += Math.sin(koef);
+    }
 
     prepare() {
         const tx = this.x - this.ox;
