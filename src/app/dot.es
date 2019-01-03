@@ -35,8 +35,8 @@ export default class Dot {
             this.vy += object.y + Math.sin(angle) * max - this.y;
         }
         const koef = Math.round(this.time / 600 + key / 6);
-        this.vx += Math.cos(koef);
-        this.vy += Math.sin(koef);
+        this.vx += Math.cos(koef) * 2;
+        this.vy += Math.sin(koef) * 2;
     }
 
     prepare() {

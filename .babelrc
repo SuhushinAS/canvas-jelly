@@ -5,9 +5,7 @@
             {
                 "modules": false
             }
-        ],
-        "@babel/flow",
-        "@babel/react"
+        ]
     ],
     "plugins": [
         "@babel/transform-runtime",
