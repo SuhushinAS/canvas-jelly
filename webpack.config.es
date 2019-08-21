@@ -60,7 +60,6 @@ module.exports = {
                         join_vars: true,
                         sequences: true,
                         unused: true,
-                        warnings: false,
                     },
                     output: {
                         ascii_only: true,
@@ -79,7 +78,7 @@ module.exports = {
         filename: '[name].min.js',
         library: ['mag', 'MAGDelivery', '[name]'],
         path: pathList.dist,
-        publicPath: '/build/',
+        publicPath: './build/',
     },
     plugins: getPluginList(),
     resolve: {
