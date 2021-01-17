@@ -1,6 +1,6 @@
-import html from './index.html';
-import Jelly from './jelly.es';
-import './style.less';
+import html from 'app/index.html';
+import Jelly from 'app/jelly';
+import 'app/style.less';
 
 export default class App {
     constructor(root) {
@@ -9,7 +9,6 @@ export default class App {
     }
 
     destroy() {
-        // console.log("App.destroy");
         this.jelly.destroy();
     }
 }

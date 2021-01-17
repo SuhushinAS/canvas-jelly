@@ -1,5 +1,5 @@
-import Dot from './dot.es';
-import Mouse from './mouse.es';
+import Dot from 'app/dot';
+import Mouse from 'app/mouse';
 
 const mouseR = 100;
 
@@ -29,7 +29,6 @@ export default class Canvas {
     };
 
     lineDraw = (dot, key) => {
-        // console.log(key);
         if (this.dot1) {
             dot.proccess({
                 r: mouseR,

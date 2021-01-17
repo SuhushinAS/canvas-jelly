@@ -1,4 +1,5 @@
-import Canvas from './canvas.es';
+import Canvas from 'app/canvas';
+
 export  default class Jelly {
     constructor(root) {
         this.root = root;
@@ -7,9 +8,9 @@ export  default class Jelly {
     }
 
     init() {
-        this.canvasEl = this.root.querySelector('.canvas');
-        this.svgEl = this.root.querySelector('.svg');
-        this.canvas = new Canvas(this.canvasEl, this.svgEl);
+        const canvas = this.root.querySelector('.canvas');
+        const svg = this.root.querySelector('.svg');
+        this.canvas = new Canvas(canvas, svg);
     }
 
     bind() {

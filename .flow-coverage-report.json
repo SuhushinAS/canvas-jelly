@@ -1,0 +1,16 @@
+{
+    "globExcludePatterns": [
+        "build/**",
+        "flow-typed/**",
+        "node_modules/**"
+    ],
+    "globIncludePatterns": [
+        "src/**/*.js"
+    ],
+    "outputDir": "coverage/flow",
+    "threshold": 90,
+    "reportTypes": [
+        "html",
+        "text"
+    ]
+}
