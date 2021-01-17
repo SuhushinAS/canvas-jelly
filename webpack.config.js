@@ -37,7 +37,7 @@ module.exports = function() {
                     test: /\.html$/u,
                     use: {
                         loader: 'html-loader',
-                        options: {interpolate: true, minimize: false},
+                        options: {minimize: false},
                     },
                 },
                 {
@@ -60,7 +60,7 @@ module.exports = function() {
                         'postcss-loader',
                         {
                             loader: 'less-loader',
-                            options: {javascriptEnabled: true},
+                            options: {lessOptions:{javascriptEnabled: true}},
                         },
                     ],
                 },
@@ -123,7 +123,7 @@ module.exports = function() {
                 minify: false,
                 template: 'src/index.tpl',
             }),
-            new CopyPlugin([{from: paths.public, to: paths.dist}]),
+            // new CopyPlugin({patterns: [{from: paths.public, to: paths.dist}]}),
             ...getPostPlugins(),
         ],
         resolve: {
