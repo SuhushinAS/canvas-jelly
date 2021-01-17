@@ -14,10 +14,7 @@ export default class Canvas {
 
     objectInit = (object) => object.map(this.dotInit);
 
-    dotInit = (dotProps) => new Dot({
-        ...dotProps,
-        r: 5,
-    });
+    dotInit = (dotProps) => new Dot({...dotProps, r: 5});
 
     dotDraw = (dot) => {
         dot.proccess({
@@ -92,9 +89,7 @@ export default class Canvas {
         };
         this.canvas = canvas;
         this.rect = this.canvas.getBoundingClientRect();
-        const pathList = [
-            ...svg.querySelectorAll('path'),
-        ].map(this.getPoints(100));
+        const pathList = [...svg.querySelectorAll('path')].map(this.getPoints(100));
 
         this.ctx = this.canvas.getContext('2d');
         this.mouse = new Mouse(this.canvas);

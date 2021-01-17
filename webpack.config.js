@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = 'production' === nodeEnv;
 const paths = {
-    dist: path.join(__dirname, 'www'),
+    dist: path.join(__dirname, 'www/us-jelly/'),
     public: path.join(__dirname, 'public'),
 };
 const stats = {
@@ -18,6 +18,8 @@ const stats = {
     errorDetails: true,
     reasons: false,
 };
+
+const styleLoader = isProd ? MiniCssExtractPlugin.loader : 'style-loader';
 
 module.exports = function() {
     return {
@@ -50,19 +52,11 @@ module.exports = function() {
                 },
                 {
                     test: /\.css$/u,
-                    use: [isProd ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'postcss-loader'],
+                    use: [styleLoader, 'css-loader', 'postcss-loader'],
                 },
                 {
                     test: /\.less$/u,
-                    use: [
-                        isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-                        'css-loader',
-                        'postcss-loader',
-                        {
-                            loader: 'less-loader',
-                            options: {lessOptions:{javascriptEnabled: true}},
-                        },
-                    ],
+                    use: [styleLoader, 'css-loader', 'postcss-loader', 'less-loader'],
                 },
                 {
                     test: /\.(ttf|eot|woff|woff2)(\?[a-z0-9]+)?$/u,
@@ -107,10 +101,10 @@ module.exports = function() {
             noEmitOnErrors: isProd,
         },
         output: {
-            filename: 'js/[name].min.js',
+            filename: '[name].min.js',
             library: ['htmlLayoutKit'],
             path: paths.dist,
-            publicPath: '/',
+            publicPath: '/us-jelly/',
         },
         plugins: [
             ...getPrePlugins(),
@@ -118,12 +112,11 @@ module.exports = function() {
             new webpack.IgnorePlugin(/^\.\/locale$/u, /moment$/u),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                hash: true,
                 inject: true,
                 minify: false,
                 template: 'src/index.tpl',
             }),
-            // new CopyPlugin({patterns: [{from: paths.public, to: paths.dist}]}),
+            new CopyPlugin({patterns: [{from: paths.public, to: paths.dist}]}),
             ...getPostPlugins(),
         ],
         resolve: {
@@ -157,11 +150,7 @@ function getPrePlugins() {
 function getPostPlugins() {
     if (isProd) {
         return [
-            new MiniCssExtractPlugin({
-                allChunks: true,
-                disable: false,
-                filename: 'css/[name].min.css',
-            }),
+            new MiniCssExtractPlugin({filename: '[name].min.css'}),
         ];
     }
 
