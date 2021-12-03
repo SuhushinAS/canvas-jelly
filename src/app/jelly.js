@@ -20,10 +20,9 @@ export  default class Jelly {
     }
 
     handleResize = (e) => {
-        const height = e.target.innerHeight;
-        const width = e.target.innerWidth;
-        const size = Math.min(height, width);
-        this.canvas.setSize(size, size);
+        const {innerHeight, innerWidth} = e.target;
+
+        this.canvas.setSize(innerWidth, innerHeight);
     };
 
     destroy() {

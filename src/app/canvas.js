@@ -61,8 +61,14 @@ export default class Canvas {
     }
 
     setSize(width, height) {
-        this.canvas.width = width;
-        this.canvas.height = height;
+        const trueWidth = Math.min(this.svgSize.width * height / this.svgSize.height, width);
+        const trueHeight = this.svgSize.height * trueWidth / this.svgSize.width;
+
+        this.canvas.width = trueWidth;
+        this.canvas.height = trueHeight;
+
+        console.log({ width, height });
+
         this.init(this.canvas, this.svg);
     }
 
