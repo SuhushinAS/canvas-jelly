@@ -7,12 +7,15 @@ export default class Canvas {
     render = () => {
         this.requestId = window.requestAnimationFrame(this.render);
         this.ctx.clearRect(0, 0, this.rect.width, this.rect.height);
-        this.ctx.fillStyle = '#000000';
+        this.ctx.fillStyle = '#ffffff';
         this.ctx.fillRect(0, 0, this.rect.width, this.rect.height);
         this.pathList.map(this.renderObject);
     };
 
-    objectInit = (object) => object.map(this.dotInit);
+    objectInit = ({ color, list }) => ({
+        color,
+        list: list.map(this.dotInit),
+    });
 
     dotInit = (dotProps) => new Dot({...dotProps, r: 5});
 
@@ -40,12 +43,12 @@ export default class Canvas {
         this.dot1 = dot;
     };
 
-    renderObject = (object) => {
+    renderObject = ({ color, list }) => {
         this.ctx.beginPath();
-        this.dot1 = object[object.length - 1];
-        object.forEach(this.lineDraw);
+        this.dot1 = list[list.length - 1];
+        list.forEach(this.lineDraw);
         this.ctx.closePath();
-        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillStyle = color;
         this.ctx.fill();
     };
 
@@ -66,25 +69,7 @@ export default class Canvas {
 
         this.canvas.width = trueWidth;
         this.canvas.height = trueHeight;
-
-        console.log({ width, height });
-
         this.init(this.canvas, this.svg);
-    }
-
-    renderMouse() {
-        const mouseDot = new Dot({
-            r: mouseR,
-            x: this.mouse.x,
-            y: this.mouse.y,
-        });
-        mouseDot.render(this.ctx, '#44cc44');
-    }
-
-    renderImage(source) {
-        this.image = new Image();
-        this.image.src = source;
-        this.ctx.drawImage(this.image, 0, 0, this.rect.width, this.rect.height);
     }
 
     init(canvas, svg) {
@@ -106,14 +91,17 @@ export default class Canvas {
         const length = path.getTotalLength();
         const step = length / dotCount;
 
-        return Array(dotCount).fill(0).map((_, i) => {
-            const point = path.getPointAtLength(i * step);
+        return {
+            color: path.getAttribute('fill'),
+            list: Array(dotCount).fill(0).map((_, i) => {
+                const point = path.getPointAtLength(i * step);
 
-            return {
-                x: point.x / this.svgSize.width * this.rect.width,
-                y: point.y / this.svgSize.height * this.rect.height,
-            };
-        });
+                return {
+                    x: point.x / this.svgSize.width * this.rect.width,
+                    y: point.y / this.svgSize.height * this.rect.height,
+                };
+            }),
+        };
     };
 
     destroy() {

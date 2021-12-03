@@ -1,8 +1,8 @@
 const cacheName = 'cache_v1';
 const urlList = [
-    '/us-jelly/main.min.css',
-    '/us-jelly/main.min.js',
-    '/us-jelly/index.html',
+    '/evrone-jelly/main.min.css',
+    '/evrone-jelly/main.min.js',
+    '/evrone-jelly/index.html',
 ];
 
 /**
@@ -52,7 +52,7 @@ function onFetch(event) {
                             resolve(response);
                         }
 
-                        resolve(caches.match('/us-jelly/index.html'));
+                        resolve(caches.match('/evrone-jelly/index.html'));
                     });
                 });
         })

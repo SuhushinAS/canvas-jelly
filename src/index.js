@@ -18,7 +18,7 @@ if (root) {
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/us-jelly/sw.js').catch((registrationError) => {
+        navigator.serviceWorker.register('/evrone-jelly/sw.js').catch((registrationError) => {
             console.error('SW registration failed: ', registrationError);
         });
     });

@@ -1,64 +1,64 @@
 {
-    "background_color": "#000000",
-    "display": "standalone",
-    "icons": [
-        {
-            "purpose": "any maskable",
-            "sizes": "36x36",
-            "src": "/us-jelly/favicon/android-chrome-36x36.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "48x48",
-            "src": "/us-jelly/favicon/android-chrome-48x48.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "72x72",
-            "src": "/us-jelly/favicon/android-chrome-72x72.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "96x96",
-            "src": "/us-jelly/favicon/android-chrome-96x96.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "144x144",
-            "src": "/us-jelly/favicon/android-chrome-144x144.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "192x192",
-            "src": "/us-jelly/favicon/android-chrome-192x192.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "256x256",
-            "src": "/us-jelly/favicon/android-chrome-256x256.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "384x384",
-            "src": "/us-jelly/favicon/android-chrome-384x384.png",
-            "type": "image/png"
-        },
-        {
-            "purpose": "any maskable",
-            "sizes": "512x512",
-            "src": "/us-jelly/favicon/android-chrome-512x512.png",
-            "type": "image/png"
-        }
-    ],
-    "name": "US Jelly",
-    "short_name": "US Jelly",
-    "start_url": "/us-jelly/index.html",
-    "theme_color": "#000000"
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "icons": [
+    {
+      "purpose": "any",
+      "sizes": "36x36",
+      "src": "/favicon/android-chrome-36x36.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "48x48",
+      "src": "/favicon/android-chrome-48x48.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "72x72",
+      "src": "/favicon/android-chrome-72x72.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "96x96",
+      "src": "/favicon/android-chrome-96x96.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "144x144",
+      "src": "/favicon/android-chrome-144x144.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "192x192",
+      "src": "/favicon/android-chrome-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "256x256",
+      "src": "/favicon/android-chrome-256x256.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "384x384",
+      "src": "/favicon/android-chrome-384x384.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "/favicon/android-chrome-512x512.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "Evrone",
+  "short_name": "Evrone",
+  "start_url": "/login",
+  "theme_color": "#343a40"
 }

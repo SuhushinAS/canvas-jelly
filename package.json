@@ -36,18 +36,18 @@
         "webpack-cli": "^3.3.12",
         "webpack-dev-server": "^3.11.2"
     },
-    "description": "US Jelly",
+    "description": "Evrone Jelly",
     "engineStrict": true,
     "engines": {
         "node": ">= 12.0.0",
         "npm": ">= 6.0.0"
     },
     "keywords": [
-        "us",
+        "evrone",
         "jelly"
     ],
     "license": "MIT",
-    "name": "us-jelly",
+    "name": "evrone-jelly",
     "private": true,
     "repository": {
         "type": "git",

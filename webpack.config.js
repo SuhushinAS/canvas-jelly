@@ -10,7 +10,7 @@ const webpack = require('webpack');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = 'production' === nodeEnv;
 const paths = {
-    dist: path.join(__dirname, 'www/us-jelly/'),
+    dist: path.join(__dirname, 'www/evrone-jelly/'),
     public: path.join(__dirname, 'public'),
 };
 const stats = {
@@ -104,7 +104,7 @@ module.exports = function() {
             filename: '[name].min.js',
             library: ['htmlLayoutKit'],
             path: paths.dist,
-            publicPath: '/us-jelly/',
+            publicPath: '/evrone-jelly/',
         },
         plugins: [
             ...getPrePlugins(),
