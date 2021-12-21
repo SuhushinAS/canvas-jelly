@@ -1,3 +1,5 @@
+import {attachEvent} from 'app/attachEvent';
+
 export default class Mouse {
     handleMove = (e) => {
         e.preventDefault();
@@ -16,9 +18,7 @@ export default class Mouse {
     }
 
     bind() {
-        this.canvas.removeEventListener('mousemove', this.handleMove);
-        this.canvas.addEventListener('mousemove', this.handleMove);
-        this.canvas.removeEventListener('touchmove', this.handleMove);
-        this.canvas.addEventListener('touchmove', this.handleMove);
+        attachEvent(this.canvas, 'mousemove', this.handleMove);
+        attachEvent(this.canvas, 'touchmove', this.handleMove);
     }
 }

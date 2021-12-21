@@ -1,3 +1,4 @@
+import {attachEvent} from 'app/attachEvent';
 import Canvas from 'app/canvas';
 
 export  default class Jelly {
@@ -14,8 +15,7 @@ export  default class Jelly {
     }
 
     bind() {
-        window.removeEventListener('resize', this.handleResize);
-        window.addEventListener('resize', this.handleResize);
+        attachEvent(window, 'resize', this.handleResize);
         window.dispatchEvent(new Event('resize'));
     }
 

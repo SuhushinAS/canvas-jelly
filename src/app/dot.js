@@ -15,28 +15,28 @@ export default class Dot {
         this.tension = tension;
     }
 
-    proccess(object, key) {
+    proccess(object) {
         this.time = +new Date();
-        this.react(object, key);
+        this.react(object);
         this.prepare();
         this.pos();
     }
 
-    react(object, key = 1) {
-        const dx = this.x - object.x;
-        const dy = this.y - object.y;
+    react({key = 1, r, scale, x, y}) {
+        const dx = this.x - x;
+        const dy = this.y - y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const max = object.r + this.r;
+        const max = r + this.r;
 
         if (dist < max) {
             const angle = Math.atan2(dy, dx);
 
-            this.vx += object.x + Math.cos(angle) * max - this.x;
-            this.vy += object.y + Math.sin(angle) * max - this.y;
+            this.vx += x + Math.cos(angle) * max - this.x;
+            this.vy += y + Math.sin(angle) * max - this.y;
         }
-        const koef = Math.round(this.time / 600 + key / 6);
-        this.vx += Math.cos(koef) * 2;
-        this.vy += Math.sin(koef) * 2;
+        const koef = Math.round(scale * (this.time / 2000 + key * 5));
+        this.vx += Math.cos(koef);
+        this.vy += Math.sin(koef);
     }
 
     prepare() {
